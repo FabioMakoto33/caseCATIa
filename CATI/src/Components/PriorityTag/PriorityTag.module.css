@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+.priorityTag {
+    width: 143px;
+    height: 28px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    padding: 4px 16px;
+    border-radius: 4px;
+    font-size: 13.33px;
+    font-weight:600;
+    font-family: 'Poppins', sans-serif;
+    color: black;
+    text-transform: capitalize;
+
+}
+
+.priorityVHigh {
+    background-color: #F27F77;
+}
+
+.priorityHigh {
+    background-color: #FFA775;
+}
+
+.priorityMedium {
+    background-color: #F5EB88;
+}
+
+.priorityLow {
+    background-color: #46F7B7;
+}

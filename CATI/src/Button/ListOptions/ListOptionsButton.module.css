@@ -1,0 +1,27 @@
+.listoptionsButton{
+  
+    width: 32px; /* Tamanho fixo da largura */
+    height: 32px; /* Tamanho fixo da altura */
+    position: relative; /* Necessário para que top/left funcionem corretamente */
+    border: none;
+    border-radius: 2px; /* Bordas arredondadas */
+    display: flex; /* Alinha conteúdo interno em flexbox */
+    align-items: center; /* Alinha verticalmente no centro */
+    justify-content: center; /* (Opcional) Adicionado para centralizar horizontalmente o conteúdo */
+    padding: 4px ; /* Simplificado o uso de padding */
+    cursor: pointer; /* Mostra o ícone de "clique" ao passar o mouse */
+    gap: 10px; /* Espaçamento entre elementos filhos */
+    background-color: transparent; /* Cor de fundo inicial */
+    transition: background-color 0.3s ease-out; /* Transição suave para hover */
+    z-index: 1;
+  }
+  .listoptionsButton:hover {
+    background-color: #4E4E4E;
+    z-index: 1;
+
+  }
+  
+  .clicked {
+    background-color: #343333; /* Cor após clique */
+    z-index: 1;
+}

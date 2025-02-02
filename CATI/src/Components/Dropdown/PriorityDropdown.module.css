@@ -1,0 +1,98 @@
+/* Contêiner principal do dropdown */
+.dropdown {
+  position: relative; /* Permite que os itens abaixo se ajustem */
+}
+
+/* Botão que exibe a opção selecionada */
+.dropdownButton {
+  width:235px; 
+  border: 1px solid #4E4E4E;
+  background: transparent;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 4px;
+  padding: 4px 16px;
+  font-size: 13.33px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  text-transform: capitalize;
+  height: 50px;
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  position: relative; 
+
+}
+/* Estilo da setinha */
+.dropdownButton img {
+  width: 16px; /* Ajuste o tamanho da setinha */
+  height: 16px;
+  margin-left: 8px; /* Espaçamento entre o texto e a setinha */
+}
+
+/* Estilização do menu dropdown */
+.dropdownMenu {
+  position: absolute; /* Alterado de relative para absolute */
+  width: 230px;
+  background: transparent; /* Fundo branco para o menu */
+  border: 1px solid #4E4E4E;
+  border-radius: 4px;
+  z-index: 10;
+  margin-top: 5px; /* Adiciona espaçamento ao expandir */
+  padding: 5px 0;
+}
+
+/* Itens da lista */
+.dropdownItem {
+  width: 100%;
+  padding: 4px 16px;
+  font-size: 13.33px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  color: black;
+  text-transform: capitalize;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 28px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-bottom: 5px;
+}
+
+/* Remove a margem do último item para evitar espaçamento extra */
+.dropdownItem:last-child {
+  margin-bottom: 0;
+}
+
+/* Conteúdo do botão */
+.buttonContent {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Espaçamento entre o texto, o ícone de prioridade e a seta */
+  margin-left: 0px;
+}
+
+/* Cores para diferentes prioridades */
+.priorityLow {
+  background-color: #46f7b7;
+}
+
+.priorityMedium {
+  background-color: #f5eb88;
+}
+
+.priorityHigh {
+  background-color: #ffa775;
+}
+
+.priorityVHigh {
+  background-color: #f27f77;
+}
+
+/* Efeito de hover */
+.dropdownItem:hover {
+  opacity: 0.8;
+}
+

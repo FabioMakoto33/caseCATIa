@@ -1,0 +1,27 @@
+.newlistButton{
+  
+  width: 152px; 
+  min-width: 152px;
+  height: 44px; 
+  min-height: 44px;
+  border: none;
+  border-radius: 4px; /* Bordas arredondadas */
+  display: flex; /* Alinha conteúdo interno em flexbox */
+  align-items: center; /* Alinha verticalmente no centro */
+  justify-content: center; /* (Opcional) Adicionado para centralizar horizontalmente o conteúdo */
+  padding: 10px; /* Simplificado o uso de padding */
+  cursor: pointer; /* Mostra o ícone de "clique" ao passar o mouse */
+  gap: 8px; /* Espaçamento entre elementos filhos */
+  background-color: transparent; /* Cor de fundo inicial */
+  color: white;
+  transition: background-color 0.3s ease-out; /* Transição suave para hover */
+}
+.newlistButton:hover {
+  background-color: #4E4E4E;
+}
+
+.newlistButtonIcon {
+  width: 20px; /* Largura da imagem */
+  height: 20px; /* Altura da imagem */
+  border-radius: 50%; /* Torna a imagem circular (opcional) */
+}

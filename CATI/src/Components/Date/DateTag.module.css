@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+.dateTag {
+    width: 126px;
+    height: 28px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 13.33px;
+    font-weight:600;
+    font-family: 'Poppins', sans-serif;
+    color: #646570;
+    text-transform: capitalize;
+    background-color: #E0E0E0;
+    gap: 8px;
+
+}
+
+.dateTagIcon {
+    width: 16px; 
+    height: 16px; 
+
+  }

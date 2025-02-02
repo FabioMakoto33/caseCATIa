@@ -1,0 +1,25 @@
+.profilebutton{
+  
+  width: 128px; /* Tamanho fixo da largura */
+  height: 36px; /* Tamanho fixo da altura */
+  border: none;
+  border-radius: 12px; /* Bordas arredondadas */
+  display: flex; /* Alinha conteúdo interno em flexbox */
+  align-items: center; /* Alinha verticalmente no centro */
+  justify-content: center; /* (Opcional) Adicionado para centralizar horizontalmente o conteúdo */
+  padding: 4px 16px; /* Simplificado o uso de padding */
+  cursor: pointer; /* Mostra o ícone de "clique" ao passar o mouse */
+  gap: 8px; /* Espaçamento entre elementos filhos */
+  background-color: transparent; /* Cor de fundo inicial */
+  color: white;
+  transition: background-color 0.3s ease-out; /* Transição suave para hover */
+}
+.profilebutton:hover {
+  background-color: #4E4E4E;
+}
+
+.profilebuttonIcon {
+  width: 20px; /* Largura da imagem */
+  height: 20px; /* Altura da imagem */
+  border-radius: 50%; /* Torna a imagem circular (opcional) */
+}

@@ -1,0 +1,25 @@
+.deleteButton{
+  
+  width: 124px; /* Tamanho fixo da largura */
+  height: 40px; /* Tamanho fixo da altura */
+  border: none;
+  border-radius: 4px; /* Bordas arredondadas */
+  display: flex; /* Alinha conteúdo interno em flexbox */
+  align-items: center; /* Alinha verticalmente no centro */
+  justify-content: center; /* (Opcional) Adicionado para centralizar horizontalmente o conteúdo */
+  padding: 10px; /* Simplificado o uso de padding */
+  cursor: pointer; /* Mostra o ícone de "clique" ao passar o mouse */
+  gap: 8px; /* Espaçamento entre elementos filhos */
+  background-color: transparent; /* Cor de fundo inicial */
+  color: white;
+  transition: background-color 0.3s ease-out; /* Transição suave para hover */
+}
+.deleteButton:hover {
+  background-color: #4E4E4E;
+}
+
+.deleteButtonIcon {
+  width: 16px; /* Largura da imagem */
+  height: 16px; /* Altura da imagem */
+ 
+}

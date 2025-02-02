@@ -1,0 +1,368 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+/*FONTES*/
+
+/* Fonte global */
+body {
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /* Para títulos */
+    h1 {
+        font-family: 'Poppins', sans-serif;
+        font-size: 47.78px;
+    } 
+
+    h2 {
+        font-family: 'Poppins', sans-serif;
+        font-size: 39.81px;
+    }
+
+    h3 {
+        font-family: 'Poppins', sans-serif;
+        font-size: 33.18px;
+    }
+  
+  /* Para parágrafos */
+    p {
+        font-family: 'Poppins', sans-serif;
+        font-size: 16px;
+    }
+/*para os botoes*/
+    span {
+        font-family: 'Poppins', sans-serif;
+        font-size: 16px;
+    }
+  
+
+/* Barra Superior */
+header {
+    /*removi o width por conta de reajustar automaticamente dentro da tela*/
+    height: 84px; 
+    padding: 12px 80px; 
+    border-bottom: 1px solid #4E4E4E; 
+    justify-content: space-between;
+    display: flex;
+    align-items: center; /*alinhamento vertical */
+    background: linear-gradient(90deg, rgba(91, 91, 91, 0.3) 0%, rgba(76, 68, 68, 0.3) 100%);
+    backdrop-filter: blur(80px); 
+    color: white;
+    margin: 0px;
+}
+
+/* Estilos para o título */
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.headerButtons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+/*HEADER,LOGO e HEADERBUTTONS acima são parte do header*/
+
+
+/* Corpo da Página */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #252628;
+    color: white; /* remover depois, somente para referencia */
+}
+
+.main-content {
+    margin-top: 84px; /* Compensa a altura do header fixo */
+    padding: 16px;
+    display: flex;
+}
+
+/* Grupo de botões no conteúdo principal, remover depois, somente para dispor os botoes na tela */
+.button-group {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os botões quebrem para a próxima linha em telas menores */
+    gap: 16px; /* Espaçamento entre os botões */
+}
+
+/* Aplicação principal */
+.app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
+
+/*ABAIXO é relacionado aos cards*/
+/* Estilização das listas */
+.board {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    padding: 16px;
+    align-items: flex-start;
+  }
+  
+  /* Estilização de uma lista */
+  .list {
+    width: 477px;
+    min-width: 477px;
+    height: auto;
+    min-height: 859px;
+    padding: 12px 8px;
+    gap: 12px;
+    opacity: 0px;
+    background-color: transparent;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid #4E4E4E;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  /* Estilização dos cartões */
+  .cards {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;  
+  }
+  
+  
+    .card {
+        background-color: #252628;
+        padding: 12px; /* Apenas um valor de padding */
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        border: 1px solid #4E4E4E;
+        height: auto; /* Altura ajustável com base no conteúdo */
+        display:-webkit-box; /* Necessário para o truncamento com clamping */
+        -webkit-box-orient: vertical; /* Define o eixo vertical */
+        overflow: hidden; /* Oculta o conteúdo extra */
+        text-overflow: ellipsis; /* Adiciona "..." no final */
+        line-clamp: 3; /* Limita o texto a 3 linhas ARUMAR POSTERIORMENTE, não fa ficando 3 linha*/
+        word-wrap: break-word; /* Quebra palavras longas */
+        margin-top: 0;
+        transition: background-color 0.3s ease-out;
+              
+    } /*Arrumar depois, o webkit não funciona em tudo, só n funciona no firebox*/
+    
+    .card:active {
+      cursor: grabbing;
+    }
+    .card:hover {
+      background: linear-gradient(258.85deg, #232323 0.2%, #393939 99.8%);
+      border: 1px solid #FFFFFF
+
+    }
+
+  
+  .list-header {
+    font-family: asdasd;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 8px;    
+  }
+
+  /*abaixo é da caixa de edição do titulo da lista*/
+
+  /* Estilo da caixa de edição */
+  .edit-input {
+    width: 413px;
+    height: 66px;
+    top: 113px;
+    left: 987px;
+    padding: 8px 0px 0px 0px;
+    gap: 10px;
+    border-radius: 12px;
+    border: 1px;
+    opacity: 0px;
+    background-color: transparent;
+    border: 1px solid #FFFFFF;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 19.2px;
+    font-weight: 600;
+    line-height: 28.8px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+
+   
+    color: white;
+  }
+
+  .topcard {
+    display: flex;          
+    justify-content: space-between;
+    align-items: center;    
+    margin-bottom: 8px;
+  }
+  
+  
+  
+  
+/*aqui é o final dos cards, acima*/
+
+
+/*textbox*/
+.textbox {
+    margin-top: 0;
+    width: 429px;
+    height: 105px;
+    padding: 8px;
+    gap: 10px;
+    border-radius: 4px;
+    border: 1px;
+    opacity: 0px;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    white-space: normal; /* Permite que o texto quebre em múltiplas linhas */
+    overflow-y: auto;   /*se o texto ficar muito grande ele faz rolagem*/
+
+}
+
+
+/*--------------------------------------MOBILE-----------------------------------------*/
+
+
+/* Barra inferior Mobile */
+.headerMobile {
+  height: 75px; /* Altura menor para mobile */
+  border-top: 1px solid #4E4E4E; /* Borda superior */
+  display: flex; /* Usa flexbox */
+  padding: 0px;
+  align-items: center;
+  background: linear-gradient(90deg, rgba(91, 91, 91, 0.3) 0%, rgba(76, 68, 68, 0.3) 100%);
+  backdrop-filter: blur(80px); 
+  color: white;
+  position: fixed; /* Fixa o header na tela */
+  bottom: 0; /* Alinha no canto inferior */
+  left: 0; /* Alinha à esquerda */
+  width: 100%; /* Ocupa toda a largura da tela */
+  z-index: 1000000; /* Garante que fique acima de outros elementos */
+}
+
+/* Estilos para o título Mobile */
+.logoMobile {
+  display: flex;
+  align-items: center;
+  font-size: 18px; /* Tamanho menor para mobile */
+}
+
+.headerButtonsMobile {
+  display: flex;
+  align-items: center;
+  padding: 8px, 20px;
+  gap: 160px;
+  justify-content: center; /* Distribui os ícones igualmente */
+  width: 100%; /* Garante que ocupe toda a largura disponível */
+}
+
+/* Corpo da Página Mobile */
+.main-contentMobile {
+  margin-top: 5px; /* Compensa a altura do header fixo menor */
+  padding: 8px; /* Padding menor para mobile */
+  display: flex;
+  flex-direction:row; /* Altera a direção para coluna em mobile */
+}
+
+/* Estilização das listas Mobile */
+.boardMobile {
+  display: flex;
+  flex-direction: row; 
+  gap: 16px;
+  overflow-x: auto;
+  padding: 8px; 
+  align-items: stretch; 
+}
+
+/* Estilização de uma lista Mobile */
+.listMobile {
+  width: 402px; 
+  min-width: 402px; 
+  height: auto;
+  min-height: 859px; 
+  padding: 8px; 
+  gap: 8px; 
+  background-color: transparent;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border: 1px solid #4E4E4E;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* Estilização dos cartões Mobile */
+.cardsMobile {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px; 
+}
+
+.cardMobile {
+  background-color: #252628;
+  padding: 8px; 
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #4E4E4E;
+  height: auto;
+  display:-webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-clamp: 3;
+  word-wrap: break-word;
+  margin-top: 0;      
+}
+
+.list-headerMobile {
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  margin-bottom: 8px;    
+}
+
+/* Estilo da caixa de edição Mobile */
+.edit-inputMobile {
+  width: 100%; 
+  height: 50px; 
+  padding: 8px;
+  border-radius: 12px;
+  border: 1px solid #FFFFFF;
+  outline: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px; 
+  font-weight: 600;
+  line-height: 24px;
+  text-align: left;
+  color: white;
+}
+
+.topcardMobile {
+  display: flex;          
+  justify-content: space-between;
+  align-items: center;    
+  margin-bottom: 8px;
+}
+
+/*textbox Mobile*/
+.textboxMobile {
+  margin-top: 0;
+  width: 100%; 
+  height: 80px; 
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px;
+  opacity: 0px;
+  overflow: hidden; 
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: normal;
+  overflow-y: auto;   
+}
