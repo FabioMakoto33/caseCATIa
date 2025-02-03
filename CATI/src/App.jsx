@@ -83,18 +83,7 @@ function App() {
     fetchData();
   }, [fetchData]);
 
-  // Mapeamento de prioridades
-  mapPriority = (priorityNumber) => {
-    const priorities = ['low', 'mid', 'high', 'vhigh'];
-    return priorities[priorityNumber - 1] || 'low';
-  };
-
-  // Mapeamento inverso para prioridades
-  mapPriorityToNumber = (priority) => {
-    const priorities = { low: 1, mid: 2, high: 3, vhigh: 4 };
-    return priorities[priority] || 1;
-  };
-
+  
   const handleDragEnd = async (result) => {
     const { source, destination, draggableId } = result;
   
