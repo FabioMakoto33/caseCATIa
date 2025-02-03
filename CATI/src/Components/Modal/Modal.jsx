@@ -8,7 +8,7 @@ import TextArea from "../TextArea.jsx";
 import FinishTaskButton from "../../Button/FinishTask/FinishTaskButton.jsx";
 import FilesButton from "../../Button/Files/FilesButton.jsx";
 
-const Modal = ({ card, setSelectedCard, updateCard, deleteCard, listId }) => {
+const Modal = ({ card, setSelectedCard, updateCard, deleteCard, listId, mapPriorityToNumber, mapPriority }) => {
   const [title, setTitle] = useState(card.title);
   const [text, setText] = useState(card.text);
   const [priority, setPriority] = useState(card.priority);
@@ -61,7 +61,7 @@ const handleSave = async () => {
     const updatedData = {
       title: title,
       description: text,
-      priority: this.mapPriorityToNumber(priority),
+      priority: mapPriorityToNumber(priority),
       finishAt: date ? new Date(date).toISOString() : null,
       listId: listId
     };
@@ -71,7 +71,7 @@ const handleSave = async () => {
     updateCard({
       ...card,
       ...response.data,
-      priority: this.mapPriority(response.data.priority),
+      priority: mapPriority(response.data.priority),
       date: response.data.finishAt ? new Date(response.data.finishAt).toISOString().split('T')[0] : '',
     });
     
@@ -194,7 +194,7 @@ const handleSave = async () => {
         <div>
           <p>Arquivos</p>
           <FilesButton 
-            taskId={selectedCard.id} 
+            taskId={card.id} 
             updateCard={() => {
               // Lógica para atualizar o card após upload
               const updatedCard = { ...selectedCard };

@@ -249,6 +249,8 @@ function App() {
           setSelectedCard={setSelectedCard}
           deleteCard={deleteCard}
           updateCard={updateCard}
+          mapPriority={mapPriority} 
+          mapPriorityToNumber={mapPriorityToNumber}
         />
       )}
     </div>
@@ -289,6 +291,8 @@ function App() {
           setSelectedCard={setSelectedCard}
           deleteCard={deleteCard}
           updateCard={updateCard}
+          mapPriority={mapPriority} 
+          mapPriorityToNumber={mapPriorityToNumber}
         />
       )}
     </div>
