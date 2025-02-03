@@ -43,9 +43,14 @@ const EditableListTitle = ({ list, updateListTitle, addNewCard, setSelectedCard,
       console.log("O componente EditableListTitle foi montado!");
     }, []); // Executa apenas na montagem do componente
   
-    const handleSave = () => {
-      updateListTitle(list.id, title); // Atualiza o título na lista global
-      setIsEditing(false); // Sai do modo de edição
+    const handleSave = async () => {
+      try {
+        await api.updateList(list.id, title);
+        updateListTitle(list.id, title);
+        setIsEditing(false);
+      } catch (error) {
+        console.error('Erro ao atualizar lista:', error);
+      }
     };
   
     const handleRename = () => {
