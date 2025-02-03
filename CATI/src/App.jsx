@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./App.css";
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 import EditableListTitle from "./EditableListTitle.jsx";
 import api from './api';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Importe outros componentes e botões conforme necessário
 import CloseTaskButton from "./Button/CloseTask/CloseTaskButton.jsx";
@@ -30,6 +33,57 @@ function App() {
   const [lists, setLists] = useState([]);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [selectedCard, setSelectedCard] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+
+  const mapPriority = (priorityNumber) => {
+    const priorityMap = {
+      1: 'low',
+      2: 'mid',
+      3: 'high',
+      4: 'vhigh'
+    };
+    return priorityMap[priorityNumber] || 'low';
+  };
+
+  const mapPriorityToNumber = (priority) => {
+    const priorityMap = {
+      low: 1,
+      mid: 2,
+      high: 3,
+      vhigh: 4
+    };
+    return priorityMap[priority] || 1;
+  };
+
+  const fetchData = useCallback(async () => {
+    try {
+      setIsLoading(true);
+      const listsResponse = await api.getLists();
+      const tasksResponse = await api.getTasks();
+
+      const mappedLists = listsResponse.data.map(list => ({
+        id: list.id,
+        title: list.title,
+        cards: tasksResponse.data
+          .filter(task => task.listId === list.id)
+          .map(task => ({
+            id: task.id,
+            title: task.title,
+            text: task.description,
+            priority: mapPriority(task.priority), // Remova o this.
+            date: task.finishAt ? new Date(task.finishAt).toISOString().split('T')[0] : '',
+          }))
+      }));
+
+      setLists(mappedLists);
+    } catch (error) {
+      console.error('Erro ao carregar dados:', error);
+      toast.error('Falha ao carregar dados');
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
@@ -38,34 +92,8 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const listsResponse = await api.getLists();
-        const tasksResponse = await api.getTasks();
-        
-        // Mapear as tasks para o formato do frontend
-        const mappedLists = listsResponse.data.map(list => ({
-          id: list.id,
-          title: list.title,
-          cards: tasksResponse.data
-            .filter(task => task.listId === list.id)
-            .map(task => ({
-              id: task.id,
-              title: task.title,
-              text: task.description,
-              priority: this.mapPriority(task.priority),
-              date: task.finishAt ? new Date(task.finishAt).toISOString().split('T')[0] : '',
-            }))
-        }));
-        
-        setLists(mappedLists);
-      } catch (error) {
-        console.error('Erro ao carregar dados:', error);
-      }
-    };
-    
     fetchData();
-  }, []);
+  }, [fetchData]);
 
   // Mapeamento de prioridades
   mapPriority = (priorityNumber) => {
@@ -157,7 +185,7 @@ function App() {
                   id: response.data.id,
                   title: response.data.title,
                   text: response.data.description,
-                  priority: this.mapPriority(response.data.priority),
+                  priority: mapPriority(response.data.priority), // Remova o this.
                   date: response.data.finishAt ? new Date(response.data.finishAt).toISOString().split('T')[0] : '',
                 }
               ]
@@ -289,7 +317,23 @@ function App() {
     </div>
   );
 
-  return isMobile ? <MobileApp /> : <DesktopApp />;
+  return (
+    <>
+      {isMobile ? <MobileApp /> : <DesktopApp />}
+      
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+    </>
+  );
 }
 
 export default App;

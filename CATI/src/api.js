@@ -1,8 +1,32 @@
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const api = axios.create({
-  baseURL: 'http://localhost:3333', // Altere se necessário
+  baseURL: 'http://localhost:3333',
 });
+
+// Interceptor para tratamento global de erros
+api.interceptors.response.use(
+  response => response,
+  error => {
+    const errorMessage = error.response?.data?.message || 
+                        error.response?.data?.error || 
+                        'Erro na operação';
+    
+    // Mostra notificação de erro
+    toast.error(errorMessage, {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
+    return Promise.reject(error);
+  }
+);
 
 export default {
   // Listas

@@ -198,7 +198,14 @@ const handleSave = async () => {
         {/* Arquivos */}
         <div>
           <p>Arquivos</p>
-          <FilesButton/>
+          <FilesButton 
+            taskId={selectedCard.id} 
+            updateCard={() => {
+              // Lógica para atualizar o card após upload
+              const updatedCard = { ...selectedCard };
+              updateCard(updatedCard);
+            }}
+          />
         </div>
 
         <hr/>
@@ -278,7 +285,14 @@ const handleSave = async () => {
         {/* Arquivos */}
         <div>
           <p>Arquivos</p>
-          <FilesButton/>
+          <FilesButton 
+            taskId={selectedCard.id} 
+            updateCard={() => {
+              // Lógica para atualizar o card após upload
+              const updatedCard = { ...selectedCard };
+              updateCard(updatedCard);
+            }}
+          />
         </div>
 
         <hr/>
