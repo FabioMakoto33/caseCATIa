@@ -61,15 +61,30 @@ useEffect(() => {
   
 
 // Função para salvar as alterações
-const handleSave = () => {
-  const updatedCard = { ...card, title, text, priority, date };
-  updateCard(updatedCard);
-  setIsDirty(false); // Reseta o estado "dirty" após salvar
+const handleSave = async () => {
+  try {
+    const updatedData = {
+      title: title,
+      description: text,
+      priority: this.mapPriorityToNumber(priority),
+      finishAt: date ? new Date(date).toISOString() : null,
+      listId: listId
+    };
+
+    const response = await api.updateTask(card.id, updatedData);
+    
+    updateCard({
+      ...card,
+      ...response.data,
+      priority: this.mapPriority(response.data.priority),
+      date: response.data.finishAt ? new Date(response.data.finishAt).toISOString().split('T')[0] : '',
+    });
+    
+    setIsDirty(false);
+  } catch (error) {
+    console.error('Erro ao atualizar tarefa:', error);
+  }
 };
-
-
-
-
 
   const handleTitleClick = () => {
     setIsEditingTitle(true);
@@ -91,16 +106,15 @@ const handleSave = () => {
   };
 
   // Confirma a exclusão do card
-  const handleConfirmDelete = () => {
-    if (!listId) {
-      console.error("Erro: listId não definido ao deletar card.");
-      return;
+  const handleConfirmDelete = async () => {
+    try {
+      await api.deleteTask(card.id);
+      deleteCard(card.id, listId);
+      setIsConfirmingDelete(false);
+      setSelectedCard(null);
+    } catch (error) {
+      console.error('Erro ao deletar tarefa:', error);
     }
-
-    console.log("Deletando card:", card.id, "da lista:", listId);
-    deleteCard(card.id, listId);
-    setIsConfirmingDelete(false);
-    setSelectedCard(null);
   };
 
   // Cancela a exclusão do card
