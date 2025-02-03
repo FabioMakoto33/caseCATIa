@@ -5,15 +5,9 @@ import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 /*---------Drag e Drop----------- */
 
 /*-----botões------- */
-import CloseTaskButton from "./Button/CloseTask/CloseTaskButton.jsx";
-import ProfileButton from "./Button/Profile/ProfileButton.jsx";
 import NewTaskButton from "./Button/NewTask/NewTaskButton.jsx";
-import NotificationButton from "./Button/Notification/NotificationButton.jsx";
 import ListOptionsButton from "./Button/ListOptions/ListOptionsButton.jsx";
 import FinishTaskButton from "./Button/FinishTask/FinishTaskButton.jsx";
-import FileButton from "./Button/File/FileButton.jsx";
-import DeleteButton from "./Button/Delete/DeleteButton.jsx";
-import NewListButton from "./Button/NewList/NewListButton.jsx";
 /*-----botões------- */
 
 /*-----Tags -----*/

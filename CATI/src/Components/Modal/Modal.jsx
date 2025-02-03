@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./Modal.css";
-import PriorityTagVHigh from "../PriorityTag/PriorityTagVHigh.jsx";
-import PriorityTagHigh from "../PriorityTag/PriorityTagHigh";
-import PriorityTagMid from "../PriorityTag/PriorityTagMid.jsx";
-import PriorityTagLow from "../PriorityTag/PriorityTagLow";
 import CloseTaskButton from "../../Button/CloseTask/CloseTaskButton.jsx";
 import DeleteButton from "../../Button/Delete/DeleteButton.jsx";
 import closeIcon from "./Close.png";
@@ -11,7 +7,6 @@ import PriorityDropdown from "../Dropdown/PriorityDropdown.jsx";
 import TextArea from "../TextArea.jsx";
 import FinishTaskButton from "../../Button/FinishTask/FinishTaskButton.jsx";
 import FilesButton from "../../Button/Files/FilesButton.jsx";
-import DateTag from "../Date/DateTag.jsx";
 
 const Modal = ({ card, setSelectedCard, updateCard, deleteCard, listId }) => {
   const [title, setTitle] = useState(card.title);

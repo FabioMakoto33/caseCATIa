@@ -8,25 +8,13 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 // Importe outros componentes e botões conforme necessário
-import CloseTaskButton from "./Button/CloseTask/CloseTaskButton.jsx";
 import ProfileButton from "./Button/Profile/ProfileButton.jsx";
-import NewTaskButton from "./Button/NewTask/NewTaskButton.jsx";
 import NotificationButton from "./Button/Notification/NotificationButton.jsx";
-import ListOptionsButton from "./Button/ListOptions/ListOptionsButton.jsx";
-import FinishTaskButton from "./Button/FinishTask/FinishTaskButton.jsx";
-import FileButton from "./Button/File/FileButton.jsx";
-import DeleteButton from "./Button/Delete/DeleteButton.jsx";
 import NewListButton from "./Button/NewList/NewListButton.jsx";
 import ProfileMobileButton from "./Button/ProfileMobile/ProfileMobileButton.jsx";
 
 // Importe as tags e modais
-import PriorityTagMid from "./Components/PriorityTag/PriorityTagMid.jsx";
-import PriorityTagLow from "./Components/PriorityTag/PriorityTagLow.jsx";
-import PriorityTagHigh from "./Components/PriorityTag/PriorityTagHigh.jsx";
-import PriorityTagVHigh from "./Components/PriorityTag/PriorityTagVHigh.jsx";
-import DateTag from "./Components/Date/DateTag.jsx";
 import Modal from "./Components/Modal/Modal.jsx";
-import ConfirmDeleteModal from "./Components/Modal/DeleteConfirmationModal.jsx";
 import HomeButton from "./Button/Home/HomeButton.jsx";
 
 function App() {
