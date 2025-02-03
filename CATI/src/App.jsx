@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 import EditableListTitle from "./EditableListTitle.jsx";
+import api from './api';
 
 // Importe outros componentes e botões conforme necessário
 import CloseTaskButton from "./Button/CloseTask/CloseTaskButton.jsx";
@@ -36,7 +37,49 @@ function App() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const handleDragEnd = (result) => {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const listsResponse = await api.getLists();
+        const tasksResponse = await api.getTasks();
+        
+        // Mapear as tasks para o formato do frontend
+        const mappedLists = listsResponse.data.map(list => ({
+          id: list.id,
+          title: list.title,
+          cards: tasksResponse.data
+            .filter(task => task.listId === list.id)
+            .map(task => ({
+              id: task.id,
+              title: task.title,
+              text: task.description,
+              priority: this.mapPriority(task.priority),
+              date: task.finishAt ? new Date(task.finishAt).toISOString().split('T')[0] : '',
+            }))
+        }));
+        
+        setLists(mappedLists);
+      } catch (error) {
+        console.error('Erro ao carregar dados:', error);
+      }
+    };
+    
+    fetchData();
+  }, []);
+
+  // Mapeamento de prioridades
+  mapPriority = (priorityNumber) => {
+    const priorities = ['low', 'mid', 'high', 'vhigh'];
+    return priorities[priorityNumber - 1] || 'low';
+  };
+
+  // Mapeamento inverso para prioridades
+  mapPriorityToNumber = (priority) => {
+    const priorities = { low: 1, mid: 2, high: 3, vhigh: 4 };
+    return priorities[priority] || 1;
+  };
+
+  const handleDragEnd = async (result) => {
     const { source, destination, draggableId } = result;
   
     if (!destination) return;
@@ -70,38 +113,69 @@ function App() {
     }
   
     console.log("Updated Lists:", lists); // Verifica se o estado foi atualizado corretamente
+    try {
+      // Atualizar a posição e lista no backend
+      await api.updateTask(movedCard.id, {
+        listId: destination.droppableId,
+        // Adicione lógica para atualizar posição se necessário
+      });
+    } catch (error) {
+      console.error('Erro ao atualizar tarefa:', error);
+    }
   };
 
-  const addNewList = () => {
-    const newListId = crypto.randomUUID();
-    const newList = { id: newListId, title: `Nova Lista ${newListId.slice(0, 5)}`, cards: [] };
-    setLists([...lists, newList]);
+  const addNewList = async () => {
+    try {
+      const response = await api.createList(`Nova Lista`);
+      setLists([...lists, {
+        id: response.data.id,
+        title: response.data.title,
+        cards: []
+      }]);
+    } catch (error) {
+      console.error('Erro ao criar lista:', error);
+    }
   };
 
-  const addNewCard = (listId) => {
-    setLists(
-      lists.map((list) =>
+  const addNewCard = async (listId) => {
+    try {
+      const response = await api.createTask({
+        title: 'Nova Tarefa',
+        description: '',
+        priority: 1,
+        listId: listId,
+        finishAt: null
+      });
+
+      setLists(lists.map(list =>
         list.id === listId
           ? {
               ...list,
               cards: [
                 ...list.cards,
                 {
-                  id: crypto.randomUUID(),
-                  title: `Nova Tarefa`,
-                  text: "",
-                  priority: "low",
-                  date: "",
-                },
-              ],
+                  id: response.data.id,
+                  title: response.data.title,
+                  text: response.data.description,
+                  priority: this.mapPriority(response.data.priority),
+                  date: response.data.finishAt ? new Date(response.data.finishAt).toISOString().split('T')[0] : '',
+                }
+              ]
             }
           : list
-      )
-    );
+      ));
+    } catch (error) {
+      console.error('Erro ao criar tarefa:', error);
+    }
   };
 
-  const deleteList = (listId) => {
-    setLists((prevLists) => prevLists.filter((list) => list.id !== listId));
+  const deleteList = async (listId) => {
+    try {
+      await api.deleteList(listId);
+      setLists(prevLists => prevLists.filter(list => list.id !== listId));
+    } catch (error) {
+      console.error('Erro ao deletar lista:', error);
+    }
   };
 
   const deleteCard = (cardId, listId) => {
