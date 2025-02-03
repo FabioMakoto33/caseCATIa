@@ -146,10 +146,10 @@ function App() {
     try {
       const response = await api.createTask({
         title: 'Nova Tarefa',
-        description: '',
+        description: 'Descrição da tarefa',
         priority: 1,
         listId: listId,
-        finishAt: null
+        finishAt: new Date().toISOString()
       });
 
       setLists(lists.map(list =>
@@ -162,7 +162,7 @@ function App() {
                   id: response.data.id,
                   title: response.data.title,
                   text: response.data.description,
-                  priority: mapPriority(response.data.priority), // Remova o this.
+                  priority: mapPriority(response.data.priority), 
                   date: response.data.finishAt ? new Date(response.data.finishAt).toISOString().split('T')[0] : '',
                 }
               ]
@@ -170,7 +170,7 @@ function App() {
           : list
       ));
     } catch (error) {
-      console.error('Erro ao criar tarefa:', error);
+      console.error('Erro ao criar tarefa:', error.response?.data.errors || error.response?.data);
     }
   };
 
